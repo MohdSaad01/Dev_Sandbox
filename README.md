@@ -1,13 +1,31 @@
-## C Mini Projects 👾
+# 🚀 Dev Sandbox
 
-A curated collection of beginner friendly C mini projects featuring simple games, utilities, and logic exercises. Each project aims to strengthen fundamental C programming skills through practical coding challenges.
+A collection of projects built while learning and applying programming concepts.
 
-## 📁 Projects Included
+This repository serves as a central place for small-to-medium projects created throughout my software development journey. Each project focuses on strengthening problem-solving skills, understanding core concepts, and gaining hands-on experience through practical implementation.
 
-- **Spooky Mad Libs:** A fun interactive story generator where users input creepy words to create a spooky tale.
-- **Bank_Console:** C program simulating a basic banking system with options to check balance, deposit money, and withdraw funds.
-- **Multi_Tool_Calculator:** A project that includes a basic calculator, weight and temperature converter, and compound interest calculator.
-- **Rock Paper Scissors:** This project lets players battle the computer using randomization and condition logic.
-- **Quiz Game:** A C program using arrays and functions to run a multiple-choice quiz with real-time answer validation and score tracking.
+## 📂 Repository Structure
 
-*Note: These projects are self contained and can be compiled and run independently.*
+Projects are organized by technology and language to keep the repository structured and easy to navigate.
+
+```text
+dev-sandbox/
+├── c/
+├── cpp/
+├── web/
+└── ...
+```
+
+## 🎯 Purpose
+
+* Practice programming concepts through real projects
+* Build a consistent development habit
+* Track learning progress over time
+* Experiment with new ideas and implementations
+* Maintain a collection of projects in one place
+
+## 📈 Progress
+
+This repository will continue to grow as new projects are completed and existing skills are refined.
+
+---
