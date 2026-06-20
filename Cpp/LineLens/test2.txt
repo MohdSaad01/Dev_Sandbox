@@ -1,0 +1,8 @@
+Hello, this is LineLens.
+
+I am learning C++.
+I like working with text files.
+This project compares two text files.
+
+This line exists only in file 2.
+End of file.
