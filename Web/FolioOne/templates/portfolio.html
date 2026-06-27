@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+</head>
+<body>
+
+    <header>
+        <nav class="navmenu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="header-social-links">
+                <a href="about.html" class="twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="about.html"  class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="about.html"  class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/mohd-saad-ansari01/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="portfolio" class="portfolio section">
+
+        <div class="container">
+
+            <!-- Section Title -->
+            <div class="portfolio-title">
+                <h2>Portfolio</h2>
+                <p>
+                    A collection of projects built while programming,
+                    automation, web development, and software engineering.
+                </p>
+            </div>
+
+            <!-- Profile Card -->
+            <div id="portfolio-profile">
+
+                <h3>Hi, I'm Mohd Saad Ansari!</h3>
+
+                <p class="profile-subtitle">
+                    Bachelor of Computer Applications | Python Developer
+                </p>
+
+                <div id="about-me">
+
+                    <h4>About Me</h4>
+
+                    <ul class="about-list">
+                        <li>🎓 BCA Second Year Student</li>
+                        <li>🐍 Focused on Python Development</li>
+                        <li>💻 Practicing problem-solving using Python on LeetCode</li>
+                        <li>🔧 Passionate about computer hardware and system building</li>
+                        <li>🦀 Learning Rust for compiler, VM, and systems development</li>
+                    </ul>
+
+                </div>
+
+                <div class="portfolio-actions">
+
+                    <a href="https://github.com/MohdSaad01"
+                       target="_blank"
+                       class="btn btn-primary">
+
+                        <i class="bi bi-github"></i>
+                        Visit GitHub Profile
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Projects -->
+            <div class="row g-4">
+
+                <!-- Project 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="https://github.com/MohdSaad01/Dev_Sandbox" class="project-card">
+
+                        <div class="project-card-header">
+                            <i class="bi bi-folder2-open project-icon"></i>
+                            <span class="project-name">Dev_Sandbox</span>
+                        </div>
+
+                        <p class="project-description">
+                            A collection of projects built while learning and applying programming concepts.
+                        </p>
+
+                        <div class="project-tech-stack">
+
+                            <span class="project-tech">
+                                <i class="devicon-c-plain"></i> C
+                            </span>
+
+                            <span class="project-tech">
+                                <i class="devicon-html5-plain"></i> HTML
+                            </span>
+
+                            <span class="project-tech">
+                                <i class="devicon-css3-plain"></i> CSS
+                            </span>
+
+                            <span class="project-tech">
+                                <i class="devicon-cplusplus-plain"></i> C++
+                            </span>
+
+                        </div>
+
+                    </a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="https://github.com/MohdSaad01/Python_projects" class="project-card">
+
+                        <div class="project-card-header">
+                            <i class="bi bi-folder2-open project-icon"></i>
+                            <span class="project-name">Python_Projects</span>
+                        </div>
+
+                        <p class="project-description">
+                            A curated collection of Python projects demonstrating problem-solving, automation, and software development skills.
+                        </p>
+
+                        <div class="project-tech-stack">
+                            <span class="project-tech">
+                                <i class="devicon-python-plain"></i> Python
+                            </span>
+                        </div>
+
+                    </a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="https://github.com/MohdSaad01/FlashLang_French" class="project-card">
+
+                        <div class="project-card-header">
+                            <i class="bi bi-folder2-open project-icon"></i>
+                            <span class="project-name">FlashLang_French</span>
+                        </div>
+
+                        <p class="project-description">
+                            A minimal French-English flashcard app that helps users memorize vocabulary through interactive self-testing and progress tracking.
+                        </p>
+
+                        <div class="project-tech-stack">
+                            <span class="project-tech">
+                                <i class="devicon-python-plain"></i> Python
+                            </span>
+                        </div>
+
+                    </a>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="https://github.com/MohdSaad01/Flight_Deals" class="project-card">
+
+                        <div class="project-card-header">
+                            <i class="bi bi-folder2-open project-icon"></i>
+                            <span class="project-name">Flight_Deals</span>
+                        </div>
+
+                        <p class="project-description">
+                            Automates flight price tracking and sends email notifications when cheaper flights are found.
+                        </p>
+
+                        <div class="project-tech-stack">
+                            <span class="project-tech">
+                                <i class="devicon-python-plain"></i> Python
+                            </span>
+                        </div>
+
+                    </a>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="https://github.com/MohdSaad01/Classic_Snake" class="project-card">
+
+                        <div class="project-card-header">
+                            <i class="bi bi-folder2-open project-icon"></i>
+                            <span class="project-name">Classic_Snake</span>
+                        </div>
+
+                        <p class="project-description">
+                            The OG Snake game built using Python's turtle graphics module.
+                        </p>
+
+                        <div class="project-tech-stack">
+                            <span class="project-tech">
+                                <i class="devicon-python-plain"></i> Python
+                            </span>
+                        </div>
+
+                    </a>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="#" class="project-card">
+
+                        <div class="project-card-header">
+                            <i class="bi bi-folder2-open project-icon"></i>
+                            <span class="project-name">Rust In Making...</span>
+                        </div>
+
+                        <p class="project-description">
+                            Currently, learning Rust and building toward compiler, VM, and systems programming projects.
+                        </p>
+
+                        <div class="project-tech-stack">
+                            <span class="project-tech">
+                                <i class="devicon-rust-original"></i> Rust
+                            </span>
+                        </div>
+
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer id="footer" class="footer">
+        <div class="container">
+          <div class="copyright text-center ">
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">PortFolio</strong> <span>All Rights Reserved<br></span></p>
+          </div>
+          <div class="credits">
+            Based on the FolioOne template by <a href="https://bootstrapmade.com/">BootstrapMade</a>, with modifications and custom content.
+          </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>
