@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+</head>
+<body>
+    <header>
+        <nav class="navmenu">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="header-social-links">
+                <a href="about.html" class="twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="about.html"  class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="about.html"  class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/mohd-saad-ansari01/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 data-aos="fade-up" data-aos-delay="200">Hello, I'm <span class="highlight">Mohd Saad Ansari</span></h1>
+                <h2 data-aos="fade-up" data-aos-delay="300">I'm a <span class="typed" data-typed-items="BCA Student,Python Programmer,Rust Developer,System Enthusiast"></span></h2>
+                <p data-aos="fade-up" data-aos-delay="400">BCA first-year student focused on Python development and problem-solving. I build projects and share them on GitHub, while practicing data structures and algorithms on LeetCode to strengthen logical reasoning and coding accuracy.</p>
+                <div class="hero-actions" data-aos="fade-up" data-aos-delay="500">
+                    <a href="https://github.com/MohdSaad01" class="btn btn-primary">View My Work</a>
+                    <a href="contact.html" class="btn btn-outline">Get In Touch</a>
+                </div>
+                <div class="social-links" data-aos="fade-up" data-aos-delay="600">
+                    <a href="https://leetcode.com/u/MohdSaad01/"><i class="bi bi-terminal"></i></a>
+                    <a href="https://www.linkedin.com/in/mohd-saad-ansari01/"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://github.com/MohdSaad01"><i class="bi bi-github"></i></a>
+                </div>
+
+            </div>
+
+            <div class="hero-image">
+                <img src="static/img/profile/profile_pic.png" alt="Profile Pic" class="profile-image">
+                <div class="floating-elements">
+                  <div class="floating-card design" data-aos="fade-left" data-aos-delay="700">
+                    <i class="bi bi-mortarboard"></i>
+                    <span>Student</span>
+                  </div>
+                  <div class="floating-card code" data-aos="fade-right" data-aos-delay="800">
+                    <i class="bi bi-code-slash"></i>
+                    <span>Code</span>
+                  </div>
+                  <div class="floating-card creativity" data-aos="fade-up" data-aos-delay="900">
+                    <i class="bi bi-cpu"></i>
+                    <span>Systems</span>
+                  </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer" class="footer">
+    <div class="container">
+      <div class="copyright text-center ">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">PortFolio</strong> <span>All Rights Reserved<br></span></p>
+      </div>
+      <div class="credits">
+        Based on the template by <a href="https://bootstrapmade.com/">BootstrapMade</a>, with modifications and custom content.
+      </div>
+    </div>
+  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    <script>
+    new Typed(".typed", {
+        strings: [
+            "BCA Student",
+            "Python Programmer",
+            "Rust Developer",
+            "System Enthusiast",
+
+        ],
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 1500,
+        loop: true
+    });
+    </script>
+</body>
+</html>
