@@ -2,7 +2,7 @@
 
 A collection of projects built while learning and applying programming concepts.
 
-This repository serves as a central place for small-to-medium projects created throughout my software development journey. Each project focuses on strengthening problem-solving skills, understanding core concepts, and gaining hands-on experience through practical implementation.
+This repository serves as a central place for small to medium projects created throughout my software development journey. Each project focuses on strengthening problem solving skills, understanding core concepts, and gaining hands-on experience through practical implementation.
 
 ## 📂 Repository Structure
 
@@ -11,7 +11,7 @@ Projects are organized by technology and language to keep the repository structu
 ```text
 dev-sandbox/
 ├── c/
-├── cpp/
+├── rust/
 ├── web/
 └── ...
 ```
