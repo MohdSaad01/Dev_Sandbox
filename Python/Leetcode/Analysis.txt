@@ -1,0 +1,581 @@
+----------
+**121. Best Time to Buy and Sell Stock**
+
+**Easy**
+
+## Analysis After Submission
+
+**Congratulations! You passed this attempt, building on your prior experience with similar problems to deliver a solid solution.**
+
+### Approach
+
+**Current:**
+Greedy / Simulation
+
+**Suggested:**
+Greedy / Simulation
+
+**Key Idea:**
+Track the minimum stock price seen so far and calculate the maximum possible profit in a single pass through the array.
+
+---
+
+**Code:**
+
+class Solution:
+def maxProfit(self, prices: List[int]) -> int:
+current_buy = float('inf')
+max_profit = 0
+
+```
+    for i in range(len(prices)):
+        if prices[i] < current_buy:
+            current_buy = prices[i]
+
+        max_profit = max(max_profit, prices[i] - current_buy)
+
+    return max_profit
+```
+
+---
+
+### Runtime
+
+**53 ms**
+**Beats:** 46.32%
+
+### Memory
+
+**28.57 MB**
+**Beats:** 75.68%
+
+---
+
+### Efficiency
+
+**Current complexity:**
+O(N)
+
+**Suggested complexity:**
+O(N)
+
+**Suggestions:**
+Your approach is already optimal; no further complexity improvements are possible here.
+
+---
+
+### Code Style
+
+**Readability:**
+Excellent
+
+**Structure:**
+Excellent
+
+**Suggestions:**
+The code is clean, logical, and follows best practices perfectly.
+
+----------
+
+----------
+
+**977. Squares of a Sorted Array**
+
+**Easy**
+
+## Analysis After Submission
+
+**Good work. Your solution correctly applies the two-pointer technique and achieves the optimal time complexity for this problem.**
+
+### Approach
+
+**Current:**
+Two Pointers / Array
+
+**Suggested:**
+Two Pointers / Array
+
+**Key Idea:**
+Using two pointers from both ends of the array and filling the result array in reverse order based on the larger absolute value.
+
+**Consider:**
+Since you mastered this, how would you adapt this logic if the input stream was infinite and you could only store a fixed window?
+
+---
+
+**Code:**
+
+class Solution:
+def sortedSquares(self, nums: List[int]) -> List[int]:
+left = 0
+n = len(nums)
+right = n - 1
+new_nums = [None] * n
+new_right = n - 1
+
+```
+    while left <= right:
+        if abs(nums[left]) > abs(nums[right]):
+            new_nums[new_right] = nums[left] * nums[left]
+            left += 1
+        else:
+            new_nums[new_right] = nums[right] * nums[right]
+            right -= 1
+
+        new_right -= 1
+
+    return new_nums
+```
+
+---
+
+### Runtime
+
+**15 ms**
+**Beats:** 29.33%
+
+### Memory
+
+**20.93 MB**
+**Beats:** 73.67%
+
+---
+
+### Efficiency
+
+**Current complexity:**
+O(N)
+
+**Suggested complexity:**
+O(N)
+
+**Suggestions:**
+Perfect efficiency achieved. Your approach matches the theoretical optimum perfectly.
+
+---
+
+### Code Style
+
+**Readability:**
+Excellent
+
+**Structure:**
+Excellent
+
+**Suggestions:**
+Your code is exceptionally clean and follows best practices with perfect clarity.
+
+----------
+
+
+----------
+
+**209. Minimum Size Subarray Sum**
+
+**Medium**
+
+## Analysis After Submission
+
+**Congratulations! You passed on your first attempt. You're in great form today!**
+
+### Approach
+
+**Current:**
+Sliding Window / Two Pointers
+
+**Suggested:**
+Sliding Window / Two Pointers
+
+**Key Idea:**
+Using a sliding window with two pointers to find the minimal subarray length satisfying a sum constraint.
+
+---
+
+**Code:**
+
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        left = 0
+        right = 0
+        min_length = float('inf')
+        total = 0
+
+        while right < len(nums):
+
+            total += nums[right]
+            right += 1
+
+            while total >= target:
+                min_length = min(min_length, right - left)
+                total -= nums[left]
+                left += 1
+
+        return 0 if min_length == float('inf') else min_length
+
+---
+
+### Runtime
+
+**16 ms**
+**Beats:** 13.19%
+
+### Memory
+
+**30.53 MB**
+**Beats:** 42.35%
+
+---
+
+### Efficiency
+
+**Current complexity:**
+O(N)
+
+**Suggested complexity:**
+O(N)
+
+**Suggestions:**
+No doubt about it, you've achieved the optimal solution!
+
+---
+
+### Code Style
+
+**Readability:**
+Excellent
+
+**Structure:**
+Excellent
+
+**Suggestions:**
+Your code is exceptionally clean and follows best practices perfectly.
+
+----------
+
+----------
+
+**643. Maximum Average Subarray I**
+
+**Easy**
+
+## Analysis After Submission
+
+**Congratulations! You passed this attempt. Although not your first try overall, you've nailed this specific sliding window pattern with great precision!**
+
+### Approach
+
+**Current:**
+Sliding Window / Prefix Sum
+
+**Suggested:**
+Sliding Window
+
+**Key Idea:**
+Maintain a fixed-size window sum by adding the new element entering the window and subtracting the oldest element leaving the window.
+
+---
+
+**Code:**
+
+class Solution:
+def findMaxAverage(self, nums: List[int], k: int) -> float:
+left = 0
+right = 0
+total = 0
+max_sum = None
+
+```
+    while right < len(nums):
+
+        total += nums[right]
+        right += 1
+
+        if (right - left) == k:
+            if max_sum is None:
+                max_sum = total
+            else:
+                max_sum = max(max_sum, total)
+
+            total -= nums[left]
+            left += 1
+
+    return max_sum / k
+```
+
+---
+
+### Runtime
+
+**111 ms**
+**Beats:** 10.23%
+
+### Memory
+
+**29.20 MB**
+**Beats:** 52.92%
+
+---
+
+### Efficiency
+
+**Current complexity:**
+O(N)
+
+**Suggested complexity:**
+O(N)
+
+**Suggestions:**
+Perfect efficiency achieved. Your linear scan is optimal for this problem constraints.
+
+---
+
+### Code Style
+
+**Readability:**
+Excellent
+
+**Structure:**
+Excellent
+
+**Suggestions:**
+Your code structure is crystal clear and follows best practices impeccably.
+
+----------
+
+----------
+**11. Container With Most Water**
+
+**Medium**
+
+## Analysis After Submission
+
+**Good work. Your solution uses the optimal strategy for this problem and achieves the best possible time complexity.**
+
+### Approach
+
+**Current:**
+Two Pointers / Greedy
+
+**Suggested:**
+Two Pointers / Greedy
+
+**Key Idea:**
+Using two pointers moving inward from both ends, always advancing the pointer at the shorter line to maximize the potential area.
+
+---
+
+**Code:**
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left = 0
+        right = len(height) - 1
+
+        max_area = 0
+
+        while left < right:
+            min_height = min(height[left], height[right])
+            area = min_height * (right - left)
+            max_area = max(area, max_area)
+
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+
+        return max_area
+
+---
+
+### Runtime
+
+**62 ms**
+**Beats:** 29.90%
+
+### Memory
+
+**29.75 MB**
+**Beats:** 14.41%
+
+---
+
+### Efficiency
+
+**Current complexity:**
+O(N)
+
+**Suggested complexity:**
+O(N)
+
+**Suggestions:**
+Perfect efficiency achieved. Your two-pointer approach is theoretically optimal for this problem.
+
+---
+
+### Code Style
+
+**Readability:**
+Excellent
+
+**Structure:**
+Excellent
+
+**Suggestions:**
+Your code is exceptionally clean, well-structured, and follows good coding practices. Variable naming is clear, and the logic is easy to follow.
+
+----------
+
+----------
+**167. Two Sum II - Input Array Is Sorted**
+
+**Medium**
+
+## Analysis After Submission
+
+**Congratulations! You passed on your first attempt with this sorted array problem. Your logic is spot on!**
+
+### Approach
+
+**Current:**
+Two Pointers
+
+**Suggested:**
+Two Pointers
+
+**Key Idea:**
+Leveraging sorted order to use two pointers moving inward based on sum comparison.
+
+---
+
+**Code:**
+
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        left = 0
+        right = len(numbers) - 1
+
+        while left < right:
+            if numbers[left] + numbers[right] > target:
+                right -= 1
+            elif numbers[left] + numbers[right] < target:
+                left += 1
+            else:
+                return [left + 1, right + 1]
+
+
+---
+
+### Runtime
+
+**0 ms**
+**Beats:** 100.00%
+
+### Memory
+
+**20.50 MB**
+**Beats:** 75.47%
+
+---
+
+### Efficiency
+
+**Current complexity:**
+O(N)
+
+**Suggested complexity:**
+O(N)
+
+**Suggestions:**
+Perfect efficiency achieved. Your two-pointer approach is optimal for this scenario.
+
+---
+
+### Code Style
+
+**Readability:**
+Good
+
+**Structure:**
+Excellent
+
+**Suggestions:**
+Add spaces around operators to improve readability and adhere to standard style guides.
+
+----------
+
+----------
+## **26. Remove Duplicates from Sorted Array**
+
+**Easy**
+
+## Analysis After Submission
+
+**Congratulations! You passed again, proving your mastery of this classic two-pointer pattern.**
+
+### Approach
+
+**Current:**
+Two Pointers / Array
+
+**Suggested:**
+Two Pointers / Array
+
+**Key Idea:**
+Using two pointers to overwrite duplicates in-place while maintaining relative order in a sorted array.
+
+---
+
+**Code:**
+
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        slow = 0
+        fast = 1
+
+        while fast < len(nums):
+            if nums[slow] == nums[fast]:
+                fast += 1
+            else:
+                slow += 1
+                nums[slow] = nums[fast]
+
+        return slow + 1
+
+---
+
+### Runtime
+
+**0 ms**
+**Beats:** 100.00%
+
+### Memory
+
+**20.45 MB**
+**Beats:** 78.35%
+
+---
+
+### Efficiency
+
+**Current complexity:**
+O(N)
+
+**Suggested complexity:**
+O(N)
+
+**Suggestions:**
+Perfect efficiency achieved. Your solution is already optimal in both **time complexity** and **space complexity**.
+
+---
+
+### Code Style
+
+**Readability:**
+Excellent
+
+**Structure:**
+Excellent
+
+**Suggestions:**
+Your code demonstrates strong clarity and clean structure. The implementation is concise, readable, and follows good programming practices.
+----------
