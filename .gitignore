@@ -1,0 +1,88 @@
+
+# ==============================
+# Python
+# ==============================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python packaging and build files
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+pip-wheel-metadata/
+
+# Testing, coverage and type checking
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.pyre/
+.ruff_cache/
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# ==============================
+# Secrets and environment files
+# ==============================
+.env
+.env.*
+!.env.example
+
+# ==============================
+# Editors and IDEs
+# ==============================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ==============================
+# Operating system
+# ==============================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ==============================
+# Logs and temporary files
+# ==============================
+*.log
+*.tmp
+*.temp
+
+# ==============================
+# Node.js / Web development
+# ==============================
+node_modules/
+.npm/
+.parcel-cache/
+.next/
+.nuxt/
+dist/
+coverage/
+
+# ==============================
+# Build artifacts
+# ==============================
+*.o
+*.obj
+*.exe
+*.dll
+*.class
