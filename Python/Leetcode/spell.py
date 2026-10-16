@@ -1,12 +1,37 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+
+
 class Solution:
-    def smallestDistancePair(self, nums: list[int], k: int) -> int:
-        distances = []
-        
-        for i in range(len(nums)):
-            for j in range(i+1 , len(nums)):
-                distance = abs(nums[i] - nums[j])
-                distances.append(distance)
-                
-        distances.sort()
-        return distances[k-1]
-        
+    def connect(self, root: 'Node') -> 'Node':
+        if not root:
+            return None
+
+        leftmost = root
+
+        while leftmost:
+            dummy = Node()
+            tail = dummy
+            node = leftmost
+
+            while node:
+                if node.left:
+                    tail.next = node.left
+                    tail = tail.next
+
+                if node.right:
+                    tail.next = node.right
+                    tail = tail.next
+
+                node = node.next
+
+            leftmost = dummy.next
+
+        return root
