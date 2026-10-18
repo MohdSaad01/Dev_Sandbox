@@ -1,20 +1,30 @@
 import heapq
-
+from collections import Counter
 
 class Solution:
-    def kthSmallest(self, matrix: list[list[int]], k: int) -> int:
-        n = len(matrix)
-        heap = []
+    def reorganizeString(self, s: str) -> str:
+        freq = Counter(s)
+        heap = [(-count, char) for char, count in freq.items()]
+        heapq.heapify(heap)
 
-        for i in range(n):
-            heapq.heappush(heap, (matrix[i][0], i, 0))
+        result = []
+        prev_count = 0
+        prev_char = ""
 
-        for _ in range(k):
-            value, r, c = heapq.heappop(heap)
+        while heap:
+            count, char = heapq.heappop(heap)
+            result.append(char)
 
-            if _ == k - 1:
-                return value
+            if prev_count < 0:
+                heapq.heappush(heap, (prev_count, prev_char))
 
-            if c + 1 < n:
-                heapq.heappush(heap, (matrix[r][c + 1], r, c + 1))
+            count += 1
+            prev_count = count
+            prev_char = char
 
+        ans = "".join(result)
+
+        if len(ans) != len(s):
+            return ""
+
+        return ans
