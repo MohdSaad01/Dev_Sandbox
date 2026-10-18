@@ -1,46 +1,33 @@
-# Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+import heapq
+from collections import Counter
 
-class Codec:
+class Solution:
+    def leastInterval(self, tasks: list[str], n: int) -> int:
+        freq = Counter(tasks)
 
-    def serialize(self, root):
-        values = []
+        heap = [-count for count in freq.values()]
+        heapq.heapify(heap)
 
-        def dfs(node):
-            if node is None:
-                values.append("N")
-                return
+        time = 0
 
-            values.append(str(node.val))
+        while heap:
+            temp = []
+            cycle = n + 1
 
-            dfs(node.left)
-            dfs(node.right)
+            for _ in range(cycle):
+                if heap:
+                    count = heapq.heappop(heap)
+                    count += 1
 
-        dfs(root)
-        return ",".join(values)
+                    if count < 0:
+                        temp.append(count)
+                    time += 1
+                else:
+                    if temp:
+                        time += 1
+                    else:
+                        break
+            for count in temp: 
+                heapq.heappush(heap, count)
 
-    def deserialize(self, data):
-        values = iter(data.split(","))
-
-        def dfs():
-            val = next(values)
-
-            if val == "N":
-                return None
-
-            node = TreeNode(int(val))
-            node.left = dfs()
-            node.right = dfs()
-
-            return node
-
-        return dfs()
-
-# Your Codec object will be instantiated and called as such:
-# ser = Codec()
-# deser = Codec()
-# ans = deser.deserialize(ser.serialize(root))
+        return time
