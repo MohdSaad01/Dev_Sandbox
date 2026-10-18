@@ -1,30 +1,21 @@
 import heapq
-from collections import Counter
 
-class Solution:
-    def reorganizeString(self, s: str) -> str:
-        freq = Counter(s)
-        heap = [(-count, char) for char, count in freq.items()]
-        heapq.heapify(heap)
+class MedianFinder:
 
-        result = []
-        prev_count = 0
-        prev_char = ""
+    def __init__(self):
+        self.min_heap = []
+        self.max_heap = []
 
-        while heap:
-            count, char = heapq.heappop(heap)
-            result.append(char)
+    def addNum(self, num: int) -> None:
+        heapq.heappush(self.min_heap, -num)
 
-            if prev_count < 0:
-                heapq.heappush(heap, (prev_count, prev_char))
+        heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))
 
-            count += 1
-            prev_count = count
-            prev_char = char
+        if len(self.max_heap) > len(self.min_heap):
+            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))
 
-        ans = "".join(result)
+    def findMedian(self) -> float:
+        if len(self.min_heap) > len(self.max_heap):
+            return -self.min_heap[0]
 
-        if len(ans) != len(s):
-            return ""
-
-        return ans
+        return (-self.min_heap[0] + self.max_heap[0]) / 2
