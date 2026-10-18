@@ -1,33 +1,20 @@
 import heapq
-from collections import Counter
+
 
 class Solution:
-    def leastInterval(self, tasks: list[str], n: int) -> int:
-        freq = Counter(tasks)
+    def kthSmallest(self, matrix: list[list[int]], k: int) -> int:
+        n = len(matrix)
+        heap = []
 
-        heap = [-count for count in freq.values()]
-        heapq.heapify(heap)
+        for i in range(n):
+            heapq.heappush(heap, (matrix[i][0], i, 0))
 
-        time = 0
+        for _ in range(k):
+            value, r, c = heapq.heappop(heap)
 
-        while heap:
-            temp = []
-            cycle = n + 1
+            if _ == k - 1:
+                return value
 
-            for _ in range(cycle):
-                if heap:
-                    count = heapq.heappop(heap)
-                    count += 1
+            if c + 1 < n:
+                heapq.heappush(heap, (matrix[r][c + 1], r, c + 1))
 
-                    if count < 0:
-                        temp.append(count)
-                    time += 1
-                else:
-                    if temp:
-                        time += 1
-                    else:
-                        break
-            for count in temp: 
-                heapq.heappush(heap, count)
-
-        return time
