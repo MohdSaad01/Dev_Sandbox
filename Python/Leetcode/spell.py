@@ -1,24 +1,19 @@
-import heapq
-
-
 class Solution:
-    def minRefuelStops(self, target: int, startFuel: int, stations: list[list[int]]) -> int:
-        heap = []
-        prev = 0
-        stop = 0
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        n = len(isConnected)
+        visited = [False] * n
+        provinces = 0
 
-        stations.append([target, 0])
+        def dfs(city):
+            visited[city] = True
 
-        for pos, fuel in stations:
-            startFuel -= pos - prev
+            for neighbour in range(n):
+                if isConnected[city][neighbour] == 1 and not visited[neighbour]:
+                    dfs(neighbour)
 
-            while startFuel < 0:
-                if not heap:
-                    return -1
+        for city in range(n):
+            if not visited[city]:
+                provinces += 1
+                dfs(city)
 
-                startFuel -= heapq.heappop(heap)
-                stop += 1
-            heapq.heappush(heap, -fuel)
-            prev = pos
-
-        return stop
+        return provinces
