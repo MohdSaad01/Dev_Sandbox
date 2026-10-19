@@ -1,21 +1,25 @@
-import heapq
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: list[ListNode | None]) -> ListNode | None:
+        values = []
 
-class MedianFinder:
+        for head in lists:
+            while head:
+                values.append(head.val)
+                head = head.next
 
-    def __init__(self):
-        self.min_heap = []
-        self.max_heap = []
+        values.sort()
 
-    def addNum(self, num: int) -> None:
-        heapq.heappush(self.min_heap, -num)
+        dummy = ListNode(0)
+        curr = dummy
 
-        heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))
+        for val in values:
+            curr.next = ListNode(val)
+            curr = curr.next
 
-        if len(self.max_heap) > len(self.min_heap):
-            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))
+        return dummy.next
 
-    def findMedian(self) -> float:
-        if len(self.min_heap) > len(self.max_heap):
-            return -self.min_heap[0]
-
-        return (-self.min_heap[0] + self.max_heap[0]) / 2
