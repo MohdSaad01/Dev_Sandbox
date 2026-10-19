@@ -1,19 +1,43 @@
+import sys
+
 class Solution:
-    def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        n = len(isConnected)
-        visited = [False] * n
-        provinces = 0
+    def criticalConnections(self, n: int, connections: list[list[int]]) -> list[list[int]]:
+        sys.setrecursionlimit(200000)
 
-        def dfs(city):
-            visited[city] = True
+        graph = [[] for _ in range(n)]
 
-            for neighbour in range(n):
-                if isConnected[city][neighbour] == 1 and not visited[neighbour]:
-                    dfs(neighbour)
+        for u, v in connections:
+            graph[u].append(v)
+            graph[v].append(u)
 
-        for city in range(n):
-            if not visited[city]:
-                provinces += 1
-                dfs(city)
+        disc = [-1] * n
+        low = [0] * n
+        bridge = []
+        timer = 0
 
-        return provinces
+        def dfs(u, parent):
+            nonlocal timer
+
+            disc[u] = low[u] = timer
+            timer += 1
+
+            for v in graph[u]:
+                if v == parent:
+                    continue
+
+                if disc[v] == -1:
+                    dfs(v, u)
+
+                    low[u] = min(low[u], low[v])
+
+                    if low[v] > disc[u]:
+                        bridge.append([u, v])
+
+                else:
+                    low[u] = min(low[u], disc[v])
+
+        for u in range(n):
+            if disc[u] == -1:
+                dfs(u, -1)
+        return bridge
+
