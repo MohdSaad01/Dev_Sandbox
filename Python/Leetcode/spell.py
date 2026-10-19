@@ -1,43 +1,33 @@
-import sys
+from collections import deque
 
 class Solution:
-    def criticalConnections(self, n: int, connections: list[list[int]]) -> list[list[int]]:
-        sys.setrecursionlimit(200000)
+    def shortestPathBinaryMatrix(self, grid):
+        n = len(grid)
 
-        graph = [[] for _ in range(n)]
+        if grid[0][0] or grid[n - 1][n - 1]:
+            return -1
 
-        for u, v in connections:
-            graph[u].append(v)
-            graph[v].append(u)
+        queue = deque([(0, 0, 1)])
+        grid[0][0] = 1
 
-        disc = [-1] * n
-        low = [0] * n
-        bridge = []
-        timer = 0
+        directions = [
+            (-1, -1), (-1, 0), (-1, 1),
+            (0, -1),            (0, 1),
+            (1, -1),  (1, 0),   (1, 1)
+        ]
 
-        def dfs(u, parent):
-            nonlocal timer
+        while queue:
+            r, c, distance = queue.popleft()
 
-            disc[u] = low[u] = timer
-            timer += 1
+            if r == n - 1 and c == n - 1:
+                return distance
 
-            for v in graph[u]:
-                if v == parent:
-                    continue
+            for dr, dc in directions:
+                nr, nc = r + dr, c + dc
 
-                if disc[v] == -1:
-                    dfs(v, u)
+                if (0 <= nr < n and 0 <= nc < n and grid[nr][nc] == 0):
 
-                    low[u] = min(low[u], low[v])
+                    grid[nr][nc] = 1
+                    queue.append((nr, nc, distance + 1))
 
-                    if low[v] > disc[u]:
-                        bridge.append([u, v])
-
-                else:
-                    low[u] = min(low[u], disc[v])
-
-        for u in range(n):
-            if disc[u] == -1:
-                dfs(u, -1)
-        return bridge
-
+        return -1
