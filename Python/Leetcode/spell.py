@@ -1,25 +1,24 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+import heapq
+
+
 class Solution:
-    def mergeKLists(self, lists: list[ListNode | None]) -> ListNode | None:
-        values = []
+    def minRefuelStops(self, target: int, startFuel: int, stations: list[list[int]]) -> int:
+        heap = []
+        prev = 0
+        stop = 0
 
-        for head in lists:
-            while head:
-                values.append(head.val)
-                head = head.next
+        stations.append([target, 0])
 
-        values.sort()
+        for pos, fuel in stations:
+            startFuel -= pos - prev
 
-        dummy = ListNode(0)
-        curr = dummy
+            while startFuel < 0:
+                if not heap:
+                    return -1
 
-        for val in values:
-            curr.next = ListNode(val)
-            curr = curr.next
+                startFuel -= heapq.heappop(heap)
+                stop += 1
+            heapq.heappush(heap, -fuel)
+            prev = pos
 
-        return dummy.next
-
+        return stop
