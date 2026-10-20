@@ -1,32 +1,31 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class BSTIterator:
+class Solution:
+    def minCostConnectPoints(self, points: list[list[int]]) -> int:
+        n = len(points)
+        visited = [False] * n
+        minimum_distance = [float('inf')] * n
 
-    def __init__(self, root: TreeNode | None):
-        self.stack = []
-        self._push_left(root)
+        minimum_distance[0] = 0
+        total_cost = 0
 
-    def _push_left(self, node) -> None:
-        while node:
-            self.stack.append(node)
-            node = node.left
+        for _ in range(n):
+            u = -1
 
-    def next(self) -> int:
-        node = self.stack.pop()
+            for i in range(n):
+                if not visited[i] and (u == -1 or minimum_distance[i] < minimum_distance[u]):
+                    u = i
 
-        if node.right:
-            self._push_left(node.right)
+            visited[u] = True
+            total_cost += minimum_distance[u]
 
-        return node.val
+            x1, y1 = points[u]
 
-    def hasNext(self) -> bool:
-        return len(self.stack) > 0
+            for v in range(n):
+                if not visited[v]:
+                    x2, y2 = points[v]
 
-# Your BSTIterator object will be instantiated and called as such:
-# obj = BSTIterator(root)
-# param_1 = obj.next()
-# param_2 = obj.hasNext()
+                    distance = abs(x1 - x2) + abs(y1 - y2)
+
+                    if distance < minimum_distance[v]:
+                        minimum_distance[v] = distance
+
+        return total_cost
