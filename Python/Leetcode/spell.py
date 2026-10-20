@@ -1,31 +1,34 @@
+import heapq
+
 class Solution:
-    def minCostConnectPoints(self, points: list[list[int]]) -> int:
-        n = len(points)
-        visited = [False] * n
-        minimum_distance = [float('inf')] * n
+    def networkDelayTime(self, times: list[list[int]], n: int, k: int) -> int:
 
-        minimum_distance[0] = 0
-        total_cost = 0
+        graph = [[] for _ in range(n + 1)]
 
-        for _ in range(n):
-            u = -1
+        for u, v, w in times:
+            graph[u].append((v, w))
 
-            for i in range(n):
-                if not visited[i] and (u == -1 or minimum_distance[i] < minimum_distance[u]):
-                    u = i
+        distance = [float('inf')] * (n + 1)
+        distance[k] = 0
 
-            visited[u] = True
-            total_cost += minimum_distance[u]
+        heap = [(0, k)]
 
-            x1, y1 = points[u]
+        while heap:
+            time, u = heapq.heappop(heap)
 
-            for v in range(n):
-                if not visited[v]:
-                    x2, y2 = points[v]
+            if time > distance[u]:
+                continue
 
-                    distance = abs(x1 - x2) + abs(y1 - y2)
+            for v, w in graph[u]:
+                new_time = time + w
 
-                    if distance < minimum_distance[v]:
-                        minimum_distance[v] = distance
+                if new_time < distance[v]:
+                    distance[v] = new_time
+                    heapq.heappush(heap, (new_time, v))
 
-        return total_cost
+        max_time = max(distance[1:])
+
+        if max_time == float('inf'):
+            return -1
+
+        return max_time
