@@ -1,34 +1,35 @@
-import heapq
+
+from collections import deque
 
 class Solution:
-    def networkDelayTime(self, times: list[list[int]], n: int, k: int) -> int:
+    def findOrder(self,numCourses: int,prerequisites: list[list[int]]) -> list[int]:
 
-        graph = [[] for _ in range(n + 1)]
+        graph = [[] for _ in range(numCourses)]
+        degree = [0] * numCourses
 
-        for u, v, w in times:
-            graph[u].append((v, w))
+        for course, prerequisite in prerequisites:
+            graph[prerequisite].append(course)
+            degree[course] += 1
 
-        distance = [float('inf')] * (n + 1)
-        distance[k] = 0
+        queue = deque()
 
-        heap = [(0, k)]
+        for course in range(numCourses):
+            if degree[course] == 0:
+                queue.append(course)
 
-        while heap:
-            time, u = heapq.heappop(heap)
+        order = []
 
-            if time > distance[u]:
-                continue
+        while queue:
+            course = queue.popleft()
+            order.append(course)
 
-            for v, w in graph[u]:
-                new_time = time + w
+            for neighbor in graph[course]:
+                degree[neighbor] -= 1
 
-                if new_time < distance[v]:
-                    distance[v] = new_time
-                    heapq.heappush(heap, (new_time, v))
+                if degree[neighbor] == 0:
+                    queue.append(neighbor)
 
-        max_time = max(distance[1:])
+        if len(order) != numCourses:
+            return []
 
-        if max_time == float('inf'):
-            return -1
-
-        return max_time
+        return order
