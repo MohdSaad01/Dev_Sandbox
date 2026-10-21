@@ -1,31 +1,25 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def deleteNode(self, root: TreeNode | None, key: int) -> TreeNode | None:
-        if root is None:
-            return None
+import heapq
 
-        if key < root.val:
-            root.left = self.deleteNode(root.left, key)
-        elif key > root.val:
-            root.right = self.deleteNode(root.right, key)
 
-        else:
-            if root.left is None:
-                return root.right
+class KthLargest:
 
-            if root.right is None:
-                return root.left
+    def __init__(self, k: int, nums: list[int]):
+        self.k = k
+        self.heap = nums
 
-            curr = root.right
+        heapq.heapify(self.heap)
 
-            while curr.left:
-                curr = curr.left
+        while len(self.heap) > self.k:
+            heapq.heappop(self.heap)
 
-            root.val = curr.val
-            root.right = self.deleteNode(root.right, curr.val)
-        return root
+    def add(self, val: int) -> int:
+        heapq.heappush(self.heap, val)
+
+        if len(self.heap) > self.k:
+            heapq.heappop(self.heap)
+
+        return self.heap[0]
+
+# Your KthLargest object will be instantiated and called as such:
+# obj = KthLargest(k, nums)
+# param_1 = obj.add(val)
