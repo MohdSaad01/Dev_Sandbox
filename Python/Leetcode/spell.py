@@ -1,35 +1,27 @@
-
-from collections import deque
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def findOrder(self,numCourses: int,prerequisites: list[list[int]]) -> list[int]:
+    def insertIntoBST(self, root: TreeNode | None, val: int) -> TreeNode | None:
+        if root is None:
+            return TreeNode(val)
 
-        graph = [[] for _ in range(numCourses)]
-        degree = [0] * numCourses
+        curr = root
 
-        for course, prerequisite in prerequisites:
-            graph[prerequisite].append(course)
-            degree[course] += 1
+        while True:
+            if val < curr.val:
+                if curr.left is None:
+                    curr.left = TreeNode(val)
+                    break
+                curr = curr.left
+            else:
+                if curr.right is None:
+                    curr.right = TreeNode(val)
+                    break
+                curr = curr.right
+        return root
 
-        queue = deque()
 
-        for course in range(numCourses):
-            if degree[course] == 0:
-                queue.append(course)
-
-        order = []
-
-        while queue:
-            course = queue.popleft()
-            order.append(course)
-
-            for neighbor in graph[course]:
-                degree[neighbor] -= 1
-
-                if degree[neighbor] == 0:
-                    queue.append(neighbor)
-
-        if len(order) != numCourses:
-            return []
-
-        return order
