@@ -5,23 +5,27 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def insertIntoBST(self, root: TreeNode | None, val: int) -> TreeNode | None:
+    def deleteNode(self, root: TreeNode | None, key: int) -> TreeNode | None:
         if root is None:
-            return TreeNode(val)
+            return None
 
-        curr = root
+        if key < root.val:
+            root.left = self.deleteNode(root.left, key)
+        elif key > root.val:
+            root.right = self.deleteNode(root.right, key)
 
-        while True:
-            if val < curr.val:
-                if curr.left is None:
-                    curr.left = TreeNode(val)
-                    break
+        else:
+            if root.left is None:
+                return root.right
+
+            if root.right is None:
+                return root.left
+
+            curr = root.right
+
+            while curr.left:
                 curr = curr.left
-            else:
-                if curr.right is None:
-                    curr.right = TreeNode(val)
-                    break
-                curr = curr.right
+
+            root.val = curr.val
+            root.right = self.deleteNode(root.right, curr.val)
         return root
-
-
