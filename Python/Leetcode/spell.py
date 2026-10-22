@@ -1,25 +1,22 @@
-import heapq
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        curr = root
 
-class KthLargest:
+        while curr:
+            if p.val < curr.val and q.val < curr.val:
+                curr = curr.left
 
-    def __init__(self, k: int, nums: list[int]):
-        self.k = k
-        self.heap = nums
+            elif p.val > curr.val and q.val > curr.val:
+                curr = curr.right
 
-        heapq.heapify(self.heap)
+            else:
+                return curr
 
-        while len(self.heap) > self.k:
-            heapq.heappop(self.heap)
-
-    def add(self, val: int) -> int:
-        heapq.heappush(self.heap, val)
-
-        if len(self.heap) > self.k:
-            heapq.heappop(self.heap)
-
-        return self.heap[0]
-
-# Your KthLargest object will be instantiated and called as such:
-# obj = KthLargest(k, nums)
-# param_1 = obj.add(val)
+        return None
