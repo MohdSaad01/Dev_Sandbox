@@ -1,22 +1,27 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
 class Solution:
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        curr = root
+    def containsNearbyAlmostDuplicate(self, nums: list[int], indexDiff: int, valueDiff: int) -> bool:
+        buckets = {}
+        w = valueDiff + 1
 
-        while curr:
-            if p.val < curr.val and q.val < curr.val:
-                curr = curr.left
+        for i, x in enumerate(nums):
 
-            elif p.val > curr.val and q.val > curr.val:
-                curr = curr.right
+            if i > indexDiff:
+                old = nums[i - indexDiff - 1]
+                del buckets[old // w]
 
-            else:
-                return curr
+            bucket = x // w
 
-        return None
+            if bucket in buckets:
+                return True
+
+            if bucket - 1 in buckets:
+                if abs(x - buckets[bucket - 1]) <= valueDiff:
+                    return True
+
+            if bucket + 1 in buckets:
+                if abs(x - buckets[bucket + 1]) <= valueDiff:
+                    return True
+
+            buckets[bucket] = x
+
+        return False
