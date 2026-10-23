@@ -1,27 +1,26 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def containsNearbyAlmostDuplicate(self, nums: list[int], indexDiff: int, valueDiff: int) -> bool:
-        buckets = {}
-        w = valueDiff + 1
+    def isBalanced(self, root: TreeNode | None) -> bool:
+        def height(node):
+            if node is None:
+                return 0;
 
-        for i, x in enumerate(nums):
+            left = height(node.left)
+            if left == -1:
+                return -1
 
-            if i > indexDiff:
-                old = nums[i - indexDiff - 1]
-                del buckets[old // w]
+            right = height(node.right)
+            if right == -1:
+                return -1
 
-            bucket = x // w
+            if (abs(left - right) > 1):
+                return -1
 
-            if bucket in buckets:
-                return True
+            return 1 + max(left, right)
 
-            if bucket - 1 in buckets:
-                if abs(x - buckets[bucket - 1]) <= valueDiff:
-                    return True
-
-            if bucket + 1 in buckets:
-                if abs(x - buckets[bucket + 1]) <= valueDiff:
-                    return True
-
-            buckets[bucket] = x
-
-        return False
+        return height(root) != -1
