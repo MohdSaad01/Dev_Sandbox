@@ -5,22 +5,17 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isBalanced(self, root: TreeNode | None) -> bool:
-        def height(node):
-            if node is None:
-                return 0;
+    def sortedArrayToBST(self, nums: list[int]) -> TreeNode | None:
+        def build(left, right):
+            if left > right:
+                return None
 
-            left = height(node.left)
-            if left == -1:
-                return -1
+            mid = (left + right) // 2
 
-            right = height(node.right)
-            if right == -1:
-                return -1
+            root = TreeNode(nums[mid])
+            root.left = build(left, mid - 1)
+            root.right = build(mid + 1, right)
 
-            if (abs(left - right) > 1):
-                return -1
+            return root
 
-            return 1 + max(left, right)
-
-        return height(root) != -1
+        return build(0, len(nums) - 1)
