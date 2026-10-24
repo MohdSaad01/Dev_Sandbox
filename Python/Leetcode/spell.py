@@ -1,21 +1,12 @@
 class Solution:
-    def productExceptSelf(self, nums: list[int]) -> list[int]:
-        answer = [0] * len(nums)
-        prefix = 1
-        answer[0] = prefix
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        current = 0
+        count = 0
+        lookup = {0:1}
 
-        for i in range(1, len(nums)):
-            prefix *= nums[i - 1]
-            answer[i] = prefix
-
-        suffix = 1
-        for i in range(len(nums) - 1, -1, -1):
-            answer[i] *= suffix
-
-            suffix *= nums[i]
-
-        return answer
-
-
-
-
+        for num in nums:
+            current += num
+            freq = lookup.get(current - k, 0)
+            count += freq
+            lookup[current] = lookup.get(current, 0) + 1
+        return count
