@@ -1,13 +1,21 @@
 class Solution:
-    def removeDuplicates(self, nums: list[int]) -> int:
-        left = 0
-        right = 1
+    def productExceptSelf(self, nums: list[int]) -> list[int]:
+        answer = [0] * len(nums)
+        prefix = 1
+        answer[0] = prefix
 
-        while right < len(nums):
-            if nums[left] == nums[right]:
-                right += 1
-            else:
-                left += 1
-                nums[left] = nums[right]
+        for i in range(1, len(nums)):
+            prefix *= nums[i - 1]
+            answer[i] = prefix
 
-        return left + 1
+        suffix = 1
+        for i in range(len(nums) - 1, -1, -1):
+            answer[i] *= suffix
+
+            suffix *= nums[i]
+
+        return answer
+
+
+
+
