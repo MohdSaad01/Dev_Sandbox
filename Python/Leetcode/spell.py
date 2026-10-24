@@ -1,13 +1,13 @@
 class Solution:
-    def moveZeroes(self, nums: list[int]) -> None:
+    def removeDuplicates(self, nums: list[int]) -> int:
         left = 0
-        right = 0
+        right = 1
 
         while right < len(nums):
-            if nums[right] == 0:
+            if nums[left] == nums[right]:
                 right += 1
             else:
-                nums[left], nums[right] = nums[right], nums[left]
                 left += 1
-                right += 1
+                nums[left] = nums[right]
 
+        return left + 1
