@@ -1,6 +1,18 @@
-from collections import Counter
 class Solution:
-    def intersect(self, nums1: list[int], nums2: list[int]) -> list[int]:
-        counts = Counter(nums1) & Counter(nums2)
+    def longestSubarray(self, nums: list[int]) -> int:
+        left = 0
+        zeros = 0
+        max_length = 0
 
-        return list(counts.elements())
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                zeros += 1
+
+            while zeros > 1:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+
+            max_length = max(max_length, right - left)
+
+        return max_length
