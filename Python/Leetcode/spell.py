@@ -1,16 +1,18 @@
 class Solution:
-    def subarraysDivByK(self, nums: list[int], k: int) -> int:
-        total = 0
-        count = 0
-        remainder_count = {0: 1}
+    def maxProduct(self, nums: list[int]) -> int:
+        max_prod = nums[0]
+        min_prod = nums[0]
+        result = nums[0]
 
-        for num in nums:
-            total += num
-            remainder = total % k
+        for i in range(1, len(nums)):
+            x = nums[i]
 
-            if remainder in remainder_count:
-                count += remainder_count[remainder]
 
-            remainder_count[remainder] = remainder_count.get(remainder, 0) + 1
+            candidates = (x, max_prod * x, min_prod * x)
 
-        return count
+            max_prod = max(candidates)
+            min_prod = min(candidates)
+
+            result = max(max_prod, result)
+
+        return result
