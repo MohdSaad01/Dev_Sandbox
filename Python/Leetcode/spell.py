@@ -1,30 +1,14 @@
 class Solution:
-    def setZeroes(self, matrix: list[list[int]]) -> None:
-        m, n = len(matrix), len(matrix[0])
+    def sortColors(self, nums: list[int]) -> None:
 
-        firstrow = any(matrix[0][j] == 0 for j in range(n))
-        firstcol = any(matrix[i][0] == 0 for i in range(m))
+        for i in range(len(nums)):
+            min_index = i
+            for j in range(i + 1, len(nums)):
+                if nums[min_index] > nums[j]:
+                    min_index = j
+            nums[i], nums[min_index] = nums[min_index], nums[i]
 
-        for i in range(1, m):
-            for j in range(1, n):
-                if matrix[i][j] == 0:
-                    matrix[i][0] = 0
-                    matrix[0][j] = 0
 
-        for i in range(1, m):
-            if matrix[i][0] == 0:
-                for j in range(1, n):
-                    matrix[i][j] = 0
 
-        for j in range(1, n):
-            if matrix[0][j] == 0:
-                for i in range(1, m):
-                    matrix[i][j] = 0
 
-        if firstrow:
-            for j in range(n):
-                matrix[0][j] = 0
 
-        if firstcol:
-            for i in range(m):
-                matrix[i][0] = 0
