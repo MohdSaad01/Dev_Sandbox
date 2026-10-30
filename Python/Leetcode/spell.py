@@ -1,23 +1,18 @@
+
 class Solution:
-    def findDuplicate(self, nums: list[int]) -> int:
-        # nums = [1,3,4,2,2]
+    def nextPermutation(self, nums: List[int]) -> None:
 
-        slow = 0
-        fast = 0
+        n = len(nums)
+        i = n - 2
+        while i >= 0 and nums[i] >= nums[i + 1]:
+            i -= 1
 
-        while True:
-            slow = nums[slow]
-            fast = nums[nums[fast]]
+        if i >= 0:
+            j = n - 1
 
-            if slow == fast:
-                break
+            while nums[j] <= nums[i]:
+                j -= 1
 
-        slow = 0
+            nums[i], nums[j] = nums[j], nums[i]
 
-        while True:
-            slow = nums[slow]
-            fast = nums[fast]
-
-            if slow == fast:
-                return slow
-
+        nums[i + 1:] = reversed(nums[i + 1:])
