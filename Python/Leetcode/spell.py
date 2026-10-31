@@ -1,18 +1,23 @@
-
 class Solution:
-    def nextPermutation(self, nums: List[int]) -> None:
+    def insert(self, intervals: list[list[int]], newInterval: list[int]) -> list[list[int]]:
+        results = []
+        i = 0
 
-        n = len(nums)
-        i = n - 2
-        while i >= 0 and nums[i] >= nums[i + 1]:
-            i -= 1
+        while i < len(intervals) and intervals[i][1]  < newInterval[0]:
+            results.append(intervals[i])
 
-        if i >= 0:
-            j = n - 1
+            i += 1
 
-            while nums[j] <= nums[i]:
-                j -= 1
+        while i < len(intervals) and intervals[i][0] <= newInterval[1]:
+            newInterval[0] = min(newInterval[0], intervals[i][0])
+            newInterval[1] = max(newInterval[1], intervals[i][1])
 
-            nums[i], nums[j] = nums[j], nums[i]
+            i += 1
+        results.append(newInterval)
 
-        nums[i + 1:] = reversed(nums[i + 1:])
+        while len(intervals) > i:
+            results.append(intervals[i])
+            i += 1
+
+        return results
+
