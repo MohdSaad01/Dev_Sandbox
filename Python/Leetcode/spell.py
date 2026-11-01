@@ -1,13 +1,19 @@
 class Solution:
-    def merge(self, intervals: list[list[int]]) -> list[list[int]]:
-        intervals.sort()
+    def longestConsecutive(self, nums: List[int]) -> int:
+        num_set = set(nums)
+        maxlength = 0
 
-        result = [intervals[0]]
+        for num in num_set:
+            if num - 1 not in num_set:
+                counter = 1
+                curr = num
 
-        for start, end in intervals[1:]:
-            if start <= result[-1][1]:
-                result[-1][1] = max(result[-1][1], end)
-            else:
-                result.append([start, end])
 
-        return result
+                while curr + 1 in num_set:
+                    counter += 1
+                    curr += 1
+
+
+                maxlength = max(maxlength, counter)
+
+        return maxlength
