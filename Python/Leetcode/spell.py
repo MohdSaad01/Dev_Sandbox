@@ -1,9 +1,19 @@
 class Solution:
-    def minMoves(self, nums: List[int]) -> int:
-        minimumn = min(nums)
+    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
+        if k <= 1:
+            return 0
 
-        moves = 0
-        for num in nums:
-            moves += num - minimumn
+        left = 0
+        multiply = 1
+        counter = 0
 
-        return moves
+        for right in range(len(nums)):
+            multiply *= nums[right]
+
+            while multiply >= k:
+                multiply //= nums[left]
+                left += 1
+
+            counter += right - left + 1
+
+        return counter
