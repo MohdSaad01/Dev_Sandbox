@@ -1,10 +1,21 @@
-class NumArray:
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        left = 0
+        right = 0
+        total = 0
+        max_sum = None
 
-    def __init__(self, nums: List[int]):
-        self.prefix = [0]
+        while right < len(nums):
 
-        for num in nums:
-            self.prefix.append(self.prefix[-1] + num)
+            total += nums[right]
+            right += 1
 
-    def sumRange(self, left: int, right: int) -> int:
-        return self.prefix[right + 1] - self.prefix[left]
+            if (right - left) == k:
+                if max_sum is None:
+                    max_sum = total
+                else:
+                    max_sum = max(max_sum, total)
+                total -= nums[left]
+                left += 1
+
+        return max_sum / k
