@@ -1,21 +1,16 @@
 class Solution:
-    def findMaxAverage(self, nums: List[int], k: int) -> float:
-        left = 0
-        right = 0
-        total = 0
-        max_sum = None
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        first = float('inf')
+        second = float('inf')
 
-        while right < len(nums):
+        for num in nums:
+            if num <= first:
+                first = num
 
-            total += nums[right]
-            right += 1
+            elif num <= second:
+                second = num
 
-            if (right - left) == k:
-                if max_sum is None:
-                    max_sum = total
-                else:
-                    max_sum = max(max_sum, total)
-                total -= nums[left]
-                left += 1
+            else:
+                return True
 
-        return max_sum / k
+        return False
