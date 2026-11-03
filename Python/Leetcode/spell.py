@@ -1,16 +1,16 @@
 class Solution:
-    def increasingTriplet(self, nums: List[int]) -> bool:
-        first = float('inf')
-        second = float('inf')
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+        remainders = {0: -1}
+        prefix = 0
 
-        for num in nums:
-            if num <= first:
-                first = num
+        for i, num in enumerate(nums):
+            prefix += num
+            remainder = prefix % k
 
-            elif num <= second:
-                second = num
-
+            if remainder in remainders:
+                if i - remainders[remainder] >= 2:
+                    return True
             else:
-                return True
+                remainders[remainder] = i
 
         return False
