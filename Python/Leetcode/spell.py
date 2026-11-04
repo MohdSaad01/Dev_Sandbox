@@ -1,24 +1,12 @@
-
 class Solution:
-    def maxSubarraySumCircular(self, nums: List[int]) -> int:
-        total_sum = 0
+    def canJump(self, nums: List[int]) -> bool:
+        reach = 0
 
-        curr_max = 0
-        max_sum = float('-inf')
+        for i in range(len(nums)):
 
-        curr = 0
-        minimum = float('inf')
+            if i > reach:
+                return False
 
-        for num in nums:
-            total_sum += num
+            reach = max(reach, i + nums[i])
 
-            curr_max = max(num, curr_max + num)
-            max_sum = max(max_sum, curr_max)
-
-            curr = min(num, curr + num)
-            minimum = min(minimum, curr)
-
-        if max_sum < 0:
-            return max_sum
-
-        return max(max_sum, total_sum - minimum)
+        return True
