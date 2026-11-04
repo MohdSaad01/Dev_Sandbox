@@ -1,16 +1,24 @@
+
 class Solution:
-    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
-        remainders = {0: -1}
-        prefix = 0
+    def maxSubarraySumCircular(self, nums: List[int]) -> int:
+        total_sum = 0
 
-        for i, num in enumerate(nums):
-            prefix += num
-            remainder = prefix % k
+        curr_max = 0
+        max_sum = float('-inf')
 
-            if remainder in remainders:
-                if i - remainders[remainder] >= 2:
-                    return True
-            else:
-                remainders[remainder] = i
+        curr = 0
+        minimum = float('inf')
 
-        return False
+        for num in nums:
+            total_sum += num
+
+            curr_max = max(num, curr_max + num)
+            max_sum = max(max_sum, curr_max)
+
+            curr = min(num, curr + num)
+            minimum = min(minimum, curr)
+
+        if max_sum < 0:
+            return max_sum
+
+        return max(max_sum, total_sum - minimum)
