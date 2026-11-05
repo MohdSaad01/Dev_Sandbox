@@ -1,12 +1,14 @@
 class Solution:
-    def canJump(self, nums: List[int]) -> bool:
-        reach = 0
+    def jump(self, nums: List[int]) -> int:
+        jump = 0
+        current = 0
+        distance = 0
 
-        for i in range(len(nums)):
+        for i in range(len(nums) - 1):
+            distance = max(distance, i + nums[i])
 
-            if i > reach:
-                return False
+            if i == current:
+                jump += 1
+                current = distance
 
-            reach = max(reach, i + nums[i])
-
-        return True
+        return jump
