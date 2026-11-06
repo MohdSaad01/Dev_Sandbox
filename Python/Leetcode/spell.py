@@ -1,14 +1,15 @@
 class Solution:
-    def jump(self, nums: List[int]) -> int:
-        jump = 0
-        current = 0
-        distance = 0
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        fullgas = 0
+        nowgas = 0
+        run = 0
 
-        for i in range(len(nums) - 1):
-            distance = max(distance, i + nums[i])
+        for i in range(len(gas)):
+            fullgas += gas[i] - cost[i]
+            nowgas += gas[i] - cost[i]
 
-            if i == current:
-                jump += 1
-                current = distance
+            if nowgas < 0:
+                run = i + 1
+                nowgas = 0
 
-        return jump
+        return run if fullgas >= 0 else -1
