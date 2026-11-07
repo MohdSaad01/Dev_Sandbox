@@ -1,15 +1,31 @@
 class Solution:
-    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        fullgas = 0
-        nowgas = 0
-        run = 0
+    def trap(self, height: List[int]) -> int:
+        l = 0
+        r = len(height) - 1
 
-        for i in range(len(gas)):
-            fullgas += gas[i] - cost[i]
-            nowgas += gas[i] - cost[i]
+        lmax = 0
+        rmax = 0
 
-            if nowgas < 0:
-                run = i + 1
-                nowgas = 0
+        water = 0
 
-        return run if fullgas >= 0 else -1
+        while l < r:
+
+            if height[l] < height[r]:
+
+                if height[l] >= lmax:
+                    lmax = height[l]
+                else:
+                    water += lmax - height[l]
+
+                l += 1
+
+            else:
+
+                if height[r] >= rmax:
+                    rmax = height[r]
+                else:
+                    water += rmax - height[r]
+
+                r -= 1
+
+        return water
