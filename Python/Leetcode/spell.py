@@ -1,31 +1,17 @@
 class Solution:
-    def trap(self, height: List[int]) -> int:
-        l = 0
-        r = len(height) - 1
+    def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
+        set1 = set(nums1)
+        set2 = set(nums2)
 
-        lmax = 0
-        rmax = 0
+        first = []
+        second = []
 
-        water = 0
+        for x in set1:
+            if x not in set2:
+                first.append(x)
 
-        while l < r:
+        for x in set2:
+            if x not in set1:
+                second.append(x)
 
-            if height[l] < height[r]:
-
-                if height[l] >= lmax:
-                    lmax = height[l]
-                else:
-                    water += lmax - height[l]
-
-                l += 1
-
-            else:
-
-                if height[r] >= rmax:
-                    rmax = height[r]
-                else:
-                    water += rmax - height[r]
-
-                r -= 1
-
-        return water
+        return [first, second]
