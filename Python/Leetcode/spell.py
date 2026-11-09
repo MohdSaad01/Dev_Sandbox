@@ -1,17 +1,15 @@
 class Solution:
-    def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
-        set1 = set(nums1)
-        set2 = set(nums2)
+    def pivotArray(self, nums: List[int], pivot: int) -> List[int]:
+        down = []
+        equal = []
+        up = []
 
-        first = []
-        second = []
+        for num in nums:
+            if num < pivot:
+                down.append(num)
+            elif num == pivot:
+                equal.append(num)
+            else:
+                up.append(num)
 
-        for x in set1:
-            if x not in set2:
-                first.append(x)
-
-        for x in set2:
-            if x not in set1:
-                second.append(x)
-
-        return [first, second]
+        return down + equal + up
