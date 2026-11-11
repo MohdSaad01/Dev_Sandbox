@@ -1,16 +1,29 @@
 class Solution:
-    def maxWidthRamp(self, nums: List[int]) -> int:
-        stack = []
+    def maxSumTwoNoOverlap(self, nums: List[int], firstLen: int, secondLen: int) -> int:
 
-        for i in range(len(nums)):
-            if not stack or nums[i] < nums[stack[-1]]:
-                stack.append(i)
+        def solve(L, M):
+            n = len(nums)
 
-        output = 0
+            prefix = [0] * (n + 1)
 
-        for j in range(len(nums) - 1, -1, -1):
-            while stack and nums[stack[-1]] <= nums[j]:
-                i = stack.pop()
-                output = max(output, j - i)
+            for i in range(n):
+                prefix[i + 1] = prefix[i] + nums[i]
 
-        return output
+            maxL = 0
+            ans = 0
+
+            for i in range(L + M, n + 1):
+
+                leftSum = prefix[i - M] - prefix[i - M - L]
+                maxL = max(maxL, leftSum)
+
+                rightSum = prefix[i] - prefix[i - M]
+
+                ans = max(ans, maxL + rightSum)
+
+            return ans
+
+        return max(
+            solve(firstLen, secondLen),
+            solve(secondLen, firstLen)
+        )
