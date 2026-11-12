@@ -1,21 +1,15 @@
 class Solution:
-    def longestPalindrome(self, s: str) -> str:
-        start = 0
-        max_len = 0
-        for i in range(len(s)):
-
-            left, right = i, i
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                if right - left + 1 > max_len:
-                    start = left
-                    max_len = right - left + 1
-                left -= 1
-                right += 1
-            left, right = i, i + 1
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                if right - left + 1 > max_len:
-                    start = left
-                    max_len = right - left + 1
-                left -= 1
-                right += 1
-        return s[start:start + max_len]
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1 or numRows >= len(s):
+            return s
+        rows = [[] for _ in range(numRows)]
+        curr_row = 0
+        direction = 1
+        for char in s:
+            rows[curr_row].append(char)
+            if curr_row == 0:
+                direction = 1
+            elif curr_row == numRows - 1:
+                direction = -1
+            curr_row += direction
+        return ''.join(''.join(row) for row in rows)
