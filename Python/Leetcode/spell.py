@@ -1,29 +1,12 @@
 class Solution:
-    def maxSumTwoNoOverlap(self, nums: List[int], firstLen: int, secondLen: int) -> int:
-
-        def solve(L, M):
-            n = len(nums)
-
-            prefix = [0] * (n + 1)
-
-            for i in range(n):
-                prefix[i + 1] = prefix[i] + nums[i]
-
-            maxL = 0
-            ans = 0
-
-            for i in range(L + M, n + 1):
-
-                leftSum = prefix[i - M] - prefix[i - M - L]
-                maxL = max(maxL, leftSum)
-
-                rightSum = prefix[i] - prefix[i - M]
-
-                ans = max(ans, maxL + rightSum)
-
-            return ans
-
-        return max(
-            solve(firstLen, secondLen),
-            solve(secondLen, firstLen)
-        )
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        n = len(nums)
+        for i in range(n):
+            while (1 <= nums[i] <= n and
+                   nums[nums[i] - 1] != nums[i]):
+                correct_idx = nums[i] - 1
+                nums[i], nums[correct_idx] = nums[correct_idx], nums[i]
+        for i in range(n):
+            if nums[i] != i + 1:
+                return i + 1
+        return n + 1
