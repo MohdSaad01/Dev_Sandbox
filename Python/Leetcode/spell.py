@@ -1,15 +1,15 @@
 class Solution:
-    def convert(self, s: str, numRows: int) -> str:
-        if numRows == 1 or numRows >= len(s):
-            return s
-        rows = [[] for _ in range(numRows)]
-        curr_row = 0
-        direction = 1
-        for char in s:
-            rows[curr_row].append(char)
-            if curr_row == 0:
-                direction = 1
-            elif curr_row == numRows - 1:
-                direction = -1
-            curr_row += direction
-        return ''.join(''.join(row) for row in rows)
+    def reverse(self, x: int) -> int:
+        INT_MIN = -2**31
+        INT_MAX = 2**31 - 1
+        sign = -1 if x < 0 else 1
+        x = abs(x)
+        rev = 0
+        while x > 0:
+            digit = x % 10
+            x //= 10
+            rev = rev * 10 + digit
+        rev *= sign
+        if rev < INT_MIN or rev > INT_MAX:
+            return 0
+        return rev
